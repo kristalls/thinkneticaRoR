@@ -1,7 +1,7 @@
 puts "Wanna know the triangle's area?"
 puts "Enter base:"
-a = gets.chomp
+base = gets.to_i
 puts "Enter height:"
-h = gets.chomp
-area = 0.5*a.to_i*h.to_i
+height = gets.to_i
+area = 0.5 * base * height
 puts "The triangle's area is #{area} square units."
