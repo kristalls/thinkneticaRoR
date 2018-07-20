@@ -14,19 +14,10 @@ sides = [a, b, c].sort!
 if sides[1] == sides[2] && sides[1] == sides[0]
   puts "Треугольник равносторонний"
   exit
-else
-  pythagoras = sides[2]**2 == sides[1]**2 + sides[0]**2
-  puts pythagoras ? "Треугольник прямоугольный" : "Треугольник не прямоугольный"
-  isosceles = sides[1] == sides[0]
-  puts isosceles ? "Треугольник равнобедренный" : "Треугольник не равнобедренный"
+elsif sides[2]**2 == sides[1]**2 + sides[0]**2
+  puts "Треугольник прямоугольный"
+elsif sides[1] == sides[0]
+  puts "Треугольник равнобедренный"
 end
-
-
-	
-
-
-
-# Часть решения взята у neverovda https://github.com/neverovda/ruby_learning/blob/master/lesson_1/rightTriangle.rb
-
 
 
