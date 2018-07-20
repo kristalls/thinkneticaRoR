@@ -11,20 +11,14 @@ c = gets.chomp.to_i
 
 sides = [a, b, c].sort!
 
-if sides[2] ** 2 == sides[1] ** 2 + sides[0] ** 2
-	puts "Треугольник прямоугольный"
-  if sides[1] == sides[2] || sides[1] == sides[0]
-    puts "Треугольник равнобедренный"
-  else
-    puts "Треугольник не равнобедренный"
-  end
+if sides[1] == sides[2] && sides[1] == sides[0]
+  puts "Треугольник равносторонний"
+  exit
 else
-	puts "Треугольник не прямоугольный"
-  if sides[1] == sides[2] && sides[1] == sides[0]
-    puts "Треугольник равносторонний"
-  else
-    puts "Треугольник не равносторонний"
-  end
+  pythagoras = sides[2]**2 == sides[1]**2 + sides[0]**2
+  puts pythagoras ? "Треугольник прямоугольный" : "Треугольник не прямоугольный"
+  isosceles = sides[1] == sides[0]
+  puts isosceles ? "Треугольник равнобедренный" : "Треугольник не равнобедренный"
 end
 
 
