@@ -11,14 +11,18 @@ c = gets.chomp.to_f
 
 sides = [a, b, c].sort!
 
-if sides[1] == sides[2] && sides[1] == sides[0]
+isosceles = sides[1] == sides[0]
+rectangular = sides[2]**2 == sides[1]**2 + sides[0]**2
+equilateral = sides[1] == sides[2] && sides[1] == sides[0]
+
+if equilateral
   puts "Треугольник равносторонний"
   exit
-elsif sides[2]**2 == sides[1]**2 + sides[0]**2
-  puts "Треугольник прямоугольный"
-    if sides[1] == sides[0]
-      puts "Треугольник равнобедренный"
-    end
+elsif rectangular && isosceles
+  puts "Треугольник прямоугольный равнобедренный"
+elsif isosceles
+  puts "Треугольник равнобедренный"
 end
+
 
 
