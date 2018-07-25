@@ -1,7 +1,5 @@
-numbers = [10]
-i = 15
-while numbers.last <= 95
-  numbers << i
-  i += 5
-end
+numbers_range = (10..100)
+numbers = []
+numbers_range.step(5) { |x| numbers << x }
 puts numbers
+

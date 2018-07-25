@@ -5,12 +5,11 @@ def gets_user_input(greeting)
   begin
     puts greeting
     input = gets.chomp!
-  end until input
-  input
+  end
 end
 
 loop do
-  name = gets_user_input('Введите название товара:').to_s
+  name = gets_user_input('Введите название товара:')
   break if name == 'stop'
   goods << {
     name => {
@@ -21,13 +20,11 @@ loop do
 end
 
 goods.each do |item|
-  item.each do |k, v|
-    puts "Item: #{k},  price: #{v[:price]}, qty: #{v[:quantity]}, sum: #{v[:quantity] * v[:price]}"
-    total += v[:quantity] * v[:price]
+  item.each do |title, detail|
+    puts "Item: #{title},  price: #{detail[:price]}, qty: #{detail[:quantity]}, sum: #{detail[:quantity] * detail[:price]}"
+    total += detail[:quantity] * detail[:price]
   end
 end
 
-puts "The total: #{total}"
-
-
+puts "Итого: #{total}"
 
