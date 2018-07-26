@@ -2,10 +2,8 @@ goods = []
 total = 0
 
 def gets_user_input(greeting)
-  begin
     puts greeting
-    input = gets.chomp!
-  end
+    gets.chomp
 end
 
 loop do
