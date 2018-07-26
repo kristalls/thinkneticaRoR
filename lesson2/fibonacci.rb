@@ -1,9 +1,7 @@
-fibonacci = [0,1]
+fibbonacci = [0, 1]
 next_element = 1
 
 while next_element < 100
-  next_element = (fibonacci[-1] + fibonacci[-2])
-  fibonacci << next_element
+  fibbonacci << next_element
+  next_element = fibbonacci[-1] + fibbonacci[-2]
 end
-
-puts fibonacci
