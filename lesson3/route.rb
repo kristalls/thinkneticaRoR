@@ -9,11 +9,11 @@ class Route
   end
 
   def delete_station(station)
-    @station.delete(station)
+    @stations.delete(station) if ![@stations.first, @stations.last].include?(station)
   end
 
-  def show
-    puts @station
+  def list
+    @stations.each {|x| puts x}
   end
 
 end
