@@ -1,5 +1,5 @@
 class Station
-
+  attr_accessor :trains
   attr_reader :name
 
   def initialize(name)
@@ -15,7 +15,7 @@ class Station
     @trains.delete(train) { |train| "Train #{train} not found" }
   end
 
-  def trains(type = :all)
+  def trains_by_type(type = :all)
     @trains.select { |train| train.type == type || type == :all}   
   end
 

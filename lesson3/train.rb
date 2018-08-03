@@ -1,6 +1,6 @@
 class Train
   
-  attr_reader :number, :carts, :speed
+  attr_reader :number, :carts, :speed, :type
 
   def initialize(number, type, carts)
     @carts = carts.to_i
@@ -9,8 +9,8 @@ class Train
     @speed = 0
   end
 
-  def chspeed=(speed)
-    @speed = speed
+  def changespeed(speed)
+    @speed = speed if speed > 0
   end
 
   def stop
@@ -25,29 +25,36 @@ class Train
     @carts -= 1 if @speed == 0 && @carts > 0
   end
 
-  def addroute(route)
+  def add_route(route)
     @route = route
+    @route.stations[@index].trains.push(self) #Здесь какая то ошибка но я не могу понять в чем она.
     @index = 0
   end
 
   def current_station
-    @current_station = @route.stations[@index]
+    @route.stations[@index]
   end
 
   def prev_station
-    @prev_station = @route.stations[@index - 1]
+    @route.stations[@index - 1]
   end
 
   def next_station
-    @prev_station = @route.stations[@index + 1]
+    @route.stations[@index + 1]
   end
 
   def move_forward
-    @index += 1
+    if !@route.stations[@index + 1].nil?
+      @index += 1
+      @route.stations[@index + 1].trains.push(self)
+      @route.stations[@index].trains.delete(self)
+    end
   end
 
   def move_backward
-    @index -= 1 if @index > 0
+    if @index > 0 && !@route.stations[@index - 1].nil?
+      @index -= 1 
+    end
   end
 
 end
