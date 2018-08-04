@@ -1,6 +1,6 @@
 class Route
 
-  attr_accessor :stations
+  attr_reader :stations
   
   def initialize(first, last)
     @stations = [first, last]
@@ -14,7 +14,7 @@ class Route
     @stations.delete(station) if ![@stations.first, @stations.last].include?(station)
   end
 
-  def list
+  def list_stations
     @stations.each {|station| puts station.name}
   end
 

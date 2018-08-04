@@ -9,7 +9,11 @@ class Train
     @speed = 0
   end
 
-  def changespeed(speed)
+  def speed_up(speed)
+    @speed = speed if speed > 0 #Зачем создавать два метода если они абсолютно одинаковы?
+  end
+
+  def slow_down(speed)
     @speed = speed if speed > 0
   end
 
@@ -27,8 +31,8 @@ class Train
 
   def add_route(route)
     @route = route
-    @route.stations[@index].trains.push(self) #Здесь какая то ошибка но я не могу понять в чем она.
     @index = 0
+    @route.stations[@index].add_train(self)
   end
 
   def current_station
@@ -44,15 +48,17 @@ class Train
   end
 
   def move_forward
-    if !@route.stations[@index + 1].nil?
+    if next_station
+      next_station.add_train(self)
+      current_station.delete_train(self)
       @index += 1
-      @route.stations[@index + 1].trains.push(self)
-      @route.stations[@index].trains.delete(self)
     end
   end
 
   def move_backward
-    if @index > 0 && !@route.stations[@index - 1].nil?
+    if prev_station
+      current_station.delete_train(self)
+      prev_station.add_train(self)
       @index -= 1 
     end
   end
