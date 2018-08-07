@@ -15,7 +15,7 @@ class Station
     @trains.delete(train) { |train| "Train #{train} not found" }
   end
 
-  def trains_by_type(type = :all)
+  def trains_list(type = :all)
     @trains.select { |train| train.type == type || type == :all}   
   end
 

@@ -1,32 +1,31 @@
 class Train
   
-  attr_reader :number, :carts, :speed, :type
+  attr_reader :number, :carts, :speed
 
-  def initialize(number, type, carts)
-    @carts = carts.to_i
+  def initialize(number)
+    @carts = []
     @number = number
-    @type = type
     @speed = 0
   end
 
-  def speed_up(speed)
-    @speed = speed if speed > 0 #Зачем создавать два метода если они абсолютно одинаковы?
+  def speed_up(change)
+    @speed += change if speed > 0
   end
 
-  def slow_down(speed)
-    @speed = speed if speed > 0
+  def slow_down(change)
+    @speed -= change if speed > 0
   end
 
   def stop
     @speed = 0
   end
 
-  def add_cart
-    @carts += 1 if @speed == 0 
+  def add_cart(cart)
+    @carts.push(cart) if @speed == 0 && cart.type == self.type
   end
 
-  def remove_cart
-    @carts -= 1 if @speed == 0 && @carts > 0
+  def remove_cart(cart)
+    @carts.delete(cart) if @speed == 0 && @carts > 0
   end
 
   def add_route(route)
@@ -62,5 +61,44 @@ class Train
       @index -= 1 
     end
   end
-
 end
+
+class PassengerTrain < Train
+  attr_reader :type #Как сделать чтобы в дополнение к основному initialize он принимал обновленный initialize?
+  def initialize
+    type = "passenger"
+    @type = type
+  end
+end
+
+class CargoTrain < Train
+  attr_reader :type
+  def initialize
+    type = "cargo"
+    @type = type
+  end
+end
+
+class Cart
+end
+
+class PassengerCart < Cart
+  attr_reader :type 
+  def initialize
+    type = "passenger"
+    @type = type
+  end
+end
+
+class CargoCart < Cart
+  attr_reader :type
+  def initialize
+    type = "cargo"
+    @type = type
+  end
+end
+
+
+
+
+
